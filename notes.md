@@ -66,6 +66,17 @@ You can chain .createTable to the end of another table. You especially want to d
 
 Order matters in the down function, think about shoes and socks. First you put your socks on, then you put your shoes on. When taking them off, you have to take your shoes off first, then you can take your socks off. Drop tables in the opposite order that you created them.
 
+# 00-cleanup.js
+
+    exports.seed = async (knex) => {
+        await knex('zoo_animals').truncate()
+        await knex('animals').truncate()
+        await knex('species').truncate()
+        await knex('zoos').truncate()
+    }
+
+The above code can replace the cleaner library. the library sometimes does not respect the order and can cause problems.
+
 ## Requirements
 
 A client has hired you to build an API for managing `zoos` and the `animals` kept at each `zoo`. The API will be used for `zoos` in the _United States of America_, no need to worry about addresses in other countries.
