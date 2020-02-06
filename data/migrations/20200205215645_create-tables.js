@@ -20,7 +20,9 @@ exports.up = function(knex) {
         .notNullable()
         .unsigned()
         .references("id")
-        .inTable("species");
+        .inTable("species")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     })
     .createTable("zoo_animals", tbl => {
       tbl
@@ -32,7 +34,9 @@ exports.up = function(knex) {
         .integer("animal_id")
         .unsigned()
         .notNullable()
-        .references("animals.id");
+        .references("animals.id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       tbl.primary(["zoo_id", "animal_id"]);
     });
 };
